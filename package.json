@@ -14,7 +14,8 @@
     "react-dom": "^16.4.2",
     "react-moment": "^0.7.9",
     "react-scripts": "1.1.4",
-    "@date-io/date-fns": "v1"
+    "@date-io/date-fns": "v1",
+    "react-router-dom": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

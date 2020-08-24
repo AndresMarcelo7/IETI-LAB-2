@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logo from "../logo.svg";
 import "./TodoApp.css";
 import { TodoList } from "./TodoList";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
-import { Card } from '@material-ui/core';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import { Card } from "@material-ui/core";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import moment from "moment";
 import {
   MuiPickersUtilsProvider,
@@ -29,78 +28,66 @@ export class TodoApp extends Component {
 
   render() {
     return (
-       
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">TODO React App</h1>
-        </header>
 
         <br />
         <br />
-        
+
         <form onSubmit={this.handleSubmit} className="todo-form">
           <h3>New TODO</h3>
           <Card>
-          
-        <CardMedia
-          
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        
-        <CardContent>
-          <label htmlFor="text" className="right-margin">
-            Text:
-          </label>
+            <CardContent>
+              <label htmlFor="text" className="right-margin">
+                Text:
+              </label>
 
-          <TextField
-            id="text"
-            onChange={this.handleTextChange}
-            value={this.state.text}
-          ></TextField>
+              <TextField
+                id="text"
+                onChange={this.handleTextChange}
+                value={this.state.text}
+              ></TextField>
 
-          <br />
-          <br />
-          <label htmlFor="priority" className="right-margin">
-            Priority:
-          </label>
+              <br />
+              <br />
+              <label htmlFor="priority" className="right-margin">
+                Priority:
+              </label>
 
-          <TextField
-            id="priority"
-            type="number"
-            onChange={this.handlePriorityChange}
-            value={this.state.priority}
-          ></TextField>
-          <br />
-          <br />
+              <TextField
+                id="priority"
+                type="number"
+                onChange={this.handlePriorityChange}
+                value={this.state.priority}
+              ></TextField>
+              <br />
+              <br />
 
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              value={this.state.dueDate}
-              onChange={this.handleDateChange}
-              format="dd/MM/yyyy"
-            />
-          </MuiPickersUtilsProvider>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  value={this.state.dueDate}
+                  onChange={this.handleDateChange}
+                  format="dd/MM/yyyy"
+                />
+              </MuiPickersUtilsProvider>
 
-          <br />
-          </CardContent>
-<CardActions style={{justifyContent: 'center'}}>
-<Button size="large" color="secondary" type="submit">Add #{this.state.items.length + 1}</Button>
-
-</CardActions>
-          
-          
+              <br />
+            </CardContent>
+            <CardActions style={{ justifyContent: "center" }}>
+              <Button size="large" color="secondary" type="submit">
+                Add #{this.state.items.length + 1}
+              </Button>
+            </CardActions>
           </Card>
         </form>
-        
+
         <br />
         <br />
-       
+
         <TodoList todoList={this.state.items} />
       </div>
     );
   }
+  
 
   handleTextChange(e) {
     this.setState({
@@ -115,15 +102,15 @@ export class TodoApp extends Component {
   }
 
   handleDateChange(date) {
+    const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
     console.log(date);
     this.setState({
-      dueDate: new Date(date),
+      dueDate: new Date(date).toLocaleDateString("en-US",options),
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
     if (
       !this.state.text.length ||
       !this.state.priority.length ||

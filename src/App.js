@@ -3,7 +3,6 @@ import "./App.css";
 import logo from "./logo.svg";
 import { TodoApp } from "./components/TodoApp";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
 import { Login } from "./components/Login";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
@@ -12,14 +11,14 @@ class App extends Component {
     super(props);
     this.state = { isLogged: false };
     this.handleLog = this.handleLog.bind(this);
-    localStorage.setItem("email", "admin@mail.com");
-    localStorage.setItem("password", "admin");
+    localStorage.setItem("email", "prueba@mail.com");
+    localStorage.setItem("password", "prueba");
     if (!localStorage.getItem("isLogged"))
     localStorage.setItem("isLogged", this.state.isLoggedIn); //SetFalse
   }
 
   handleLog() {
-    let state = localStorage.getItem("isLogged") == "true" ? "false" : "true";
+    let state = localStorage.getItem("isLogged") === "true" ? "false" : "true";
     console.log("yelloooow!!!")
     this.setState({ isLoggedIn: state });
     localStorage.setItem("isLogged", state);
@@ -29,7 +28,7 @@ class App extends Component {
   Draw() {
   let log1 = localStorage.getItem("isLogged");
   const LoginView = () => {
-    return localStorage.getItem("isLogged") == "true"? <h1>Login Exitoso!</h1> : <Login login={this.handleLog}/> 
+    return localStorage.getItem("isLogged") === "true"? <h1>Login Exitoso!</h1> : <Login login={this.handleLog}/> 
 };
 
     const TodoAppView = () => {

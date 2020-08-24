@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "../logo.svg";
 import "./TodoApp.css";
 import { TodoList } from "./TodoList";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
 import { Card } from "@material-ui/core";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import moment from "moment";
